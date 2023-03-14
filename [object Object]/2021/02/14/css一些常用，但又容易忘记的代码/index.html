@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一些常用的head标签内部.meta标签常用1&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width,initial-scale&#x3D;1,minimum-scale&#x3D;1,maximum-scale&#x3D;1,user-scalable&#x3D;no&quot; &#x2F;&gt; 这是一段移动端必备的一段代码。 1&lt;meta name&#x3D;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于css中一些常用，但又容易忘记的代码">
+<meta property="og:url" content="http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/index.html">
+<meta property="og:site_name" content="luckyu">
+<meta property="og:description" content="一些常用的head标签内部.meta标签常用1&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width,initial-scale&#x3D;1,minimum-scale&#x3D;1,maximum-scale&#x3D;1,user-scalable&#x3D;no&quot; &#x2F;&gt; 这是一段移动端必备的一段代码。 1&lt;meta name&#x3D;&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-14T10:24:33.000Z">
+<meta property="article:modified_time" content="2023-02-23T08:49:22.029Z">
+<meta property="article:author" content="luckyu">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/icon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/icon.ico" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.ico">
+        
+      
+    
+    <!-- title -->
+    <title>关于css中一些常用，但又容易忘记的代码</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/comment/">Comments</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/%5Bobject%20Object%5D/2021/02/21/WEBsocket%E7%9A%84%E5%BC%95%E5%85%A5/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/%5Bobject%20Object%5D/2021/02/12/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&text=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&is_video=false&description=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=关于css中一些常用，但又容易忘记的代码&body=Check out this article: http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&name=关于css中一些常用，但又容易忘记的代码&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&t=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84head%E6%A0%87%E7%AD%BE%E5%86%85%E9%83%A8"><span class="toc-number">1.</span> <span class="toc-text">一些常用的head标签内部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#meta%E6%A0%87%E7%AD%BE%E5%B8%B8%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">.meta标签常用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84css%E6%A0%B7%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">一些容易忘记的css样式</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        关于css中一些常用，但又容易忘记的代码
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">luckyu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-02-14T10:24:33.000Z" itemprop="datePublished">2021-02-14</time>
+        
+        (Updated: <time datetime="2023-02-23T08:49:22.029Z" itemprop="dateModified">2023-02-23</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/CSS/" rel="tag">CSS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="一些常用的head标签内部"><a href="#一些常用的head标签内部" class="headerlink" title="一些常用的head标签内部"></a>一些常用的head标签内部</h4><h4 id="meta标签常用"><a href="#meta标签常用" class="headerlink" title=".meta标签常用"></a>.meta标签常用</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这是一段移动端必备的一段代码。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;Description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;HTML是最好的语言&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>长尾关键词， 这是做SEO必需的一段代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;Keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>关键词， 这也是做SEO必需的一段代码， 不过近期百度收录的改动， 渐渐的这段代码已经失去了他原本的意义， 但是也是非常有用的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Meta name&#x3D;&quot;Robots&quot; Content&#x3D;&quot;All|None|Index|Noindex|Follow|Nofollow&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>Robots用来告诉搜索机器人哪些页面需要索引，哪些页面不需要索引。Content的参数有all、none、index、noindex、follow、nofollow。默认是all。<br>all：文件将被检索，且页面上的链接可以被查询；<br>none：文件将不被检索，且页面上的链接不可以被查询；(和 “noindex, no follow” 起相同作用)<br>index：文件将被检索；（让robot/spider登录）<br>follow：页面上的链接可以被查询；转自环 球 网校edu24ol.com转自环 球 网校edu24ol.com转自环 球 网校edu24ol.com<br>noindex：文件将不被检索，但页面上的链接可以被查询；(不让robot/spider登录)<br>nofollow：文件将不被检索，页面上的链接可以被查询。(不让robot/spider顺着此页的连接往下探找)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;format-detection&quot; content&#x3D;&quot;telephone&#x3D;no&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>ios版阻止默认数字识别为手机 可将telephone=no，则手机号码不被显示为拨号链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;apple-mobile-web-app-status-bar-style&quot; content&#x3D;&quot;black&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>在web app应用下状态条（屏幕顶部条）的颜色；默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）。<br>若值为“black-translucent”将会占据页面px位置，浮在页面上方（会覆盖页面20px高度–iphone4和itouch4的Retina屏幕为40px）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta content&#x3D;&quot;email&#x3D;no&quot; name&#x3D;&quot;format-detection&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>修改默认IOS 把@识别成邮箱。</p>
+<blockquote>
+<p>以上一些就是目前一些常用的Meta 类似一些utf-8 这些编码规范的代码。 在此就不做多说了， 每一个做前端工作的人员，学习的第一步， UTF-8</p>
+</blockquote>
+<hr>
+<h4 id="一些容易忘记的css样式"><a href="#一些容易忘记的css样式" class="headerlink" title="一些容易忘记的css样式"></a>一些容易忘记的css样式</h4><ul>
+<li><p>格式化css默认样式</p>
+<ul>
+<li>腾讯QQ官网 样式初始化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select&#123;margin:0;padding:0&#125; </span><br><span class="line">      body&#123;font:12px&quot;宋体&quot;,&quot;Arial Narrow&quot;,HELVETICA;background:#fff;-webkit-text-size-adjust:100%;&#125; </span><br><span class="line">      a&#123;color:#2d374b;text-decoration:none&#125; </span><br><span class="line">      a:hover&#123;color:#cd0200;text-decoration:underline&#125; </span><br><span class="line">      em&#123;font-style:normal&#125; </span><br><span class="line">      li&#123;list-style:none&#125; </span><br><span class="line">      img&#123;border:0;vertical-align:middle&#125; </span><br><span class="line">      table&#123;border-collapse:collapse;border-spacing:0&#125; </span><br><span class="line">      p&#123;word-wrap:break-word&#125; </span><br></pre></td></tr></table></figure>
+<ul>
+<li>新浪官网 样式初始化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div&#123;margin:0;padding:0;border:0;&#125; </span><br><span class="line">body&#123;background:#fff;color:#333;font-size:12px; margin-top:5px;font-family:&quot;SimSun&quot;,&quot;宋体&quot;,&quot;Arial Narrow&quot;;&#125;  </span><br><span class="line">ul,ol&#123;list-style-type:none;&#125; </span><br><span class="line">select,input,img,select&#123;vertical-align:middle;&#125;  </span><br><span class="line">a&#123;text-decoration:none;&#125; </span><br><span class="line">a:link&#123;color:#009;&#125; </span><br><span class="line">a:visited&#123;color:#800080;&#125; </span><br><span class="line">a:hover,a:active,a:focus&#123;color:#c00;text-decoration:underline;&#125; </span><br></pre></td></tr></table></figure>
+<ul>
+<li>淘宝官网 样式初始化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td &#123; margin:0; padding:0; &#125; </span><br><span class="line">body, button, input, select, textarea &#123; font:12px&#x2F;1.5tahoma, arial, \5b8b\4f53; &#125;</span><br><span class="line">h1, h2, h3, h4, h5, h6&#123; font-size:100%; &#125;</span><br><span class="line">address, cite, dfn, em, var &#123; font-style:normal; &#125;</span><br><span class="line">code, kbd, pre, samp &#123; font-family:couriernew, courier, monospace; &#125;</span><br><span class="line">small&#123; font-size:12px; &#125;</span><br><span class="line">ul, ol &#123; list-style:none; &#125;</span><br><span class="line">a &#123; text-decoration:none; &#125;</span><br><span class="line">a:hover &#123; text-decoration:underline; &#125;</span><br><span class="line">sup &#123; vertical-align:text-top; &#125;</span><br><span class="line">sub&#123; vertical-align:text-bottom; &#125;</span><br><span class="line">legend &#123; color:#000; &#125;</span><br><span class="line">fieldset, img &#123; border:0; &#125;</span><br><span class="line">button, input, select, textarea &#123; font-size:100%; &#125;</span><br><span class="line">table &#123; border-collapse:collapse; border-spacing:0; &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>网易官网 样式初始化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">html &#123;overflow-y:scroll;&#125;</span><br><span class="line">body &#123;margin:0; padding:29px00; font:12px&quot;\5B8B\4F53&quot;,sans-serif;background:#ffffff;&#125;</span><br><span class="line">div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p&#123;padding:0; margin:0;&#125;</span><br><span class="line">table,td,tr,th&#123;font-size:12px;&#125;</span><br><span class="line">li&#123;list-style-type:none;&#125;</span><br><span class="line">img&#123;vertical-align:top;border:0;&#125;</span><br><span class="line">ol,ul &#123;list-style:none;&#125;</span><br><span class="line">h1,h2,h3,h4,h5,h6&#123;font-size:12px; font-weight:normal;&#125;</span><br><span class="line">address,cite,code,em,th &#123;font-weight:normal; font-style:normal;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>个人建议，集合他们所长， 和你项目的需求来修改自己的初始化代码。毕竟需求不同样式不同</p>
+</blockquote>
+</li>
+<li><p>关于input 去除焦点，边框 outline: none;</p>
+</li>
+<li><p>li标签去除默认样式 list-style-type:none;</p>
+</li>
+<li><p>背景图片固定 background-attachment：fixed （网页滚动时，背景图片相对于浏览器的窗口而言，固定不动）</p>
+</li>
+<li><p>background-attachment: scroll （网页滚动时，背景图片相对于浏览器的窗口而言，一起滚动）</p>
+</li>
+<li><p>text-indent：缩进距离</p>
+</li>
+<li><p>cursor：鼠标形状参数</p>
+<ul>
+<li>style=”cursor:hand” 　　　　　手形</li>
+<li>style=”cursor:crosshair” 　　十字形</li>
+<li>style=”cursor:text” 　　　　　文本形</li>
+<li>style=”cursor:wait” 　　　　　沙漏形</li>
+<li>style=”cursor:move” 　　　　十字箭头形：<ul>
+<li>style=”cursor:help” 　　　　　问号形</li>
+</ul>
+</li>
+<li>style=”cursor:e-resize” 　　　右箭头形</li>
+<li>style=”cursor:n-resize” 　　　上箭头形</li>
+<li>style=”cursor:nw-resize” 　　左上箭头形</li>
+<li>style=”cursor:w-resize” 　　　左箭头形</li>
+<li>style=”cursor:s-resize” 　　　下箭头形</li>
+<li>style=”cursor:se-resize” 　　右下箭头形</li>
+<li>style=”cursor:sw-resize” 　　左下箭头形</li>
+<li>还有一些不是特别常用的句不列举了，</li>
+</ul>
+</li>
+<li><p>letter-spacing 来设置字与字间距_字符间距离，字体间距css样式（汉字用）</p>
+</li>
+<li><p>word-spacing来设置字体间距 ，字体间距css样式（英文用）</p>
+</li>
+<li><p>清除浮动</p>
+<ul>
+<li>在浮动的元素最后添加同级元素这是 clear：both属性</li>
+<li>给父元素这是宽高</li>
+<li>给父元素设置 overflow:hidden</li>
+<li>最常用的三种方法。（记得一定要清除浮动，不然你的页面就会出BUG）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>转载于:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzkbwl/p/6816565.html">https://www.cnblogs.com/zzkbwl/p/6816565.html</a></p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+         
+          <li><a href="/comment/">Comments</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84head%E6%A0%87%E7%AD%BE%E5%86%85%E9%83%A8"><span class="toc-number">1.</span> <span class="toc-text">一些常用的head标签内部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#meta%E6%A0%87%E7%AD%BE%E5%B8%B8%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">.meta标签常用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84css%E6%A0%B7%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">一些容易忘记的css样式</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&text=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&is_video=false&description=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=关于css中一些常用，但又容易忘记的代码&body=Check out this article: http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&title=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&name=关于css中一些常用，但又容易忘记的代码&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/[object%20Object]/2021/02/14/css%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8F%88%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81/&t=关于css中一些常用，但又容易忘记的代码"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2023
+    luckyu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/comment/">Comments</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

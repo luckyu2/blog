@@ -10,15 +10,6 @@ if (!!$.prototype.justifiedGallery) {
   $(".article-gallery").justifiedGallery(options);
 }
 
-/**
- * Add a scroll listener to the menu to hide/show the navigation links.
- */
-if (menu.length) {
-  $(window).on("scroll", function() {
-    var topDistance =  window.pageYOffset;
-    })
-  }
-
 $(document).ready(function() {
 
   /**
@@ -61,11 +52,13 @@ $(document).ready(function() {
     });
 
     /**
-     * Add a scroll listener to the menu to hide/show the navigation links.
+     * Add a scroll listener to the menu to hide/show the navigation links.   根据滚动 掩藏或掩藏nav  munu
      */
+
     if (menu.length) {
       $(window).on("scroll", function() {
-        var topDistance = menu.offset().top;
+        // var topDistance = menu.offset().top;
+        var topDistance =  window.pageYOffset;
 
         // hide only the navigation links on desktop
         if (!nav.is(":visible") && topDistance < 50) {

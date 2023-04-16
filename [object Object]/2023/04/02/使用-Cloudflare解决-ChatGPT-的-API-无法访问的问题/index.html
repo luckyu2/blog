@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="此方法可以解决openai API不能使用的问题，文章部分内容引用于nooc大神 准备工作：  1.一个域名(最好是国外)，推荐用（纯数字）.xyz的域名，这种域名很便宜，估计不到1刀,域名申请就不放教程了。2.一个注册好的 Cloudflare的账号，Cloudflare注册地址 ，注册方法，可以自己搜一搜，这里也不放教程了。   注： Cloudflare可以切换成中文，注册时点击右上角就有语">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Cloudflare解决 ChatGPT API无法访问的问题">
+<meta property="og:url" content="http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="luckyu">
+<meta property="og:description" content="此方法可以解决openai API不能使用的问题，文章部分内容引用于nooc大神 准备工作：  1.一个域名(最好是国外)，推荐用（纯数字）.xyz的域名，这种域名很便宜，估计不到1刀,域名申请就不放教程了。2.一个注册好的 Cloudflare的账号，Cloudflare注册地址 ，注册方法，可以自己搜一搜，这里也不放教程了。   注： Cloudflare可以切换成中文，注册时点击右上角就有语">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/03/27/e6TaAdtkBubgv29.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/27/FaEGq8sdfrW5OYb.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/38027416/222871270-d973e2bd-74f9-4efa-b080-e665903a7bac.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/38027416/222871439-4ac253c6-d87f-434e-a8e8-3d05c652217d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/38027416/222871710-c1d4834e-3bb4-49cf-a9dd-b7dcee258112.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/38027416/222872146-bf4c8f30-307a-4511-9be6-8c19db5cab43.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/38027416/222872491-026600f5-c04c-49c5-9fdf-4d4abb0b66f7.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/38027416/222872581-b99c8870-bcc7-4b8d-ba1e-1ad7830ce776.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/38027416/222873100-8979dd0e-9572-4d6b-92d6-86d012bdd188.png">
+<meta property="og:image" content="https://s2.loli.net/2023/03/15/hKYVSzRX1B9iPD7.jpg">
+<meta property="article:published_time" content="2023-04-02T06:15:45.000Z">
+<meta property="article:modified_time" content="2023-04-16T07:25:20.524Z">
+<meta property="article:author" content="luckyu">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/27/e6TaAdtkBubgv29.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/icon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/icon.ico" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.ico">
+        
+      
+    
+    <!-- title -->
+    <title>使用 Cloudflare解决 ChatGPT API无法访问的问题</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/search">搜索</a></li><!--
+     --><!--
+       --><li><a href="/archives">归类</a></li><!--
+     --><!--
+       --><li><a href="/about">关于我</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/%5Bobject%20Object%5D/2023/03/10/%E7%AE%80%E5%8D%95%E4%B8%A4%E6%AD%A5%E4%BD%BF%E7%94%A8chatGP/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&text=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&is_video=false&description=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用 Cloudflare解决 ChatGPT API无法访问的问题&body=Check out this article: http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&name=使用 Cloudflare解决 ChatGPT API无法访问的问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&t=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%99%BB%E5%BD%95%E5%88%B0-Cloudflare"><span class="toc-number">1.</span> <span class="toc-text">1.登录到 Cloudflare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-Cloudflare-Worker"><span class="toc-number">2.</span> <span class="toc-text">2.创建一个 Cloudflare Worker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9CloudflareWorker%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">3.修改CloudflareWorker的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%BB%91%E5%AE%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D"><span class="toc-number">4.</span> <span class="toc-text">4.绑定自己的域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95-%E6%8E%A8%E8%8D%90%E7%9B%B8%E5%BA%94%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">扩展:推荐相应的应用</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        使用 Cloudflare解决 ChatGPT API无法访问的问题
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">luckyu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-04-02T06:15:45.000Z" itemprop="datePublished">2023-04-02</time>
+        
+        (Updated: <time datetime="2023-04-16T07:25:20.524Z" itemprop="dateModified">2023-04-16</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/chatGPT/">chatGPT</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>此方法可以解决openai API不能使用的问题，文章部分内容引用于nooc大神</p>
+<p>准备工作：</p>
+<blockquote>
+<p>1.一个域名(最好是国外)，推荐用（纯数字）.xyz的域名，这种域名很便宜，估计不到1刀,域名申请就不放教程了。<br>2.一个注册好的 Cloudflare的账号，Cloudflare注册地址 ，注册方法，可以自己搜一搜，这里也不放教程了。</p>
+</blockquote>
+<hr>
+<p>注： Cloudflare可以切换成中文，注册时点击右上角就有语言选择一栏。下图引用部分用的是英文。</p>
+<h3 id="1-登录到-Cloudflare"><a href="#1-登录到-Cloudflare" class="headerlink" title="1.登录到 Cloudflare"></a>1.登录到 Cloudflare</h3><p>登录到 Cloudflare的管理界面后，将自己注册的的域名添加进去，并修改服务器DNS。</p>
+<p><img src="https://s2.loli.net/2023/03/27/e6TaAdtkBubgv29.png"></p>
+<p><img src="https://s2.loli.net/2023/03/27/FaEGq8sdfrW5OYb.png"></p>
+<h3 id="2-创建一个-Cloudflare-Worker"><a href="#2-创建一个-Cloudflare-Worker" class="headerlink" title="2.创建一个 Cloudflare Worker"></a>2.创建一个 Cloudflare Worker</h3><p><strong>点击侧边栏的 “Workers” 选项，然后点击 “Create a Service” 创建一个 Worker。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/38027416/222871270-d973e2bd-74f9-4efa-b080-e665903a7bac.png"><img src="https://user-images.githubusercontent.com/38027416/222871270-d973e2bd-74f9-4efa-b080-e665903a7bac.png" alt="image"></a></p>
+<p><strong>然后在创建界面中输入 “Service name” 后点击 “Create Service” 按钮新建 Worker。“Select a starter” 项先不用管。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/38027416/222871439-4ac253c6-d87f-434e-a8e8-3d05c652217d.png"><img src="https://user-images.githubusercontent.com/38027416/222871439-4ac253c6-d87f-434e-a8e8-3d05c652217d.png" alt="image"></a></p>
+<p>至此 Cloudflare 的 Worker 便创建好了，下面开始修改 Worker 的代码，使其能代理 OpenAI 的 API。</p>
+<h3 id="3-修改CloudflareWorker的代码"><a href="#3-修改CloudflareWorker的代码" class="headerlink" title="3.修改CloudflareWorker的代码"></a>3.修改CloudflareWorker的代码</h3><p>在 Worker 的管理界面，点击右上角的 “Quick Edit” 按钮编辑代码 Worker 的代码。</p>
+<p><a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/38027416/222871710-c1d4834e-3bb4-49cf-a9dd-b7dcee258112.png"><img src="https://user-images.githubusercontent.com/38027416/222871710-c1d4834e-3bb4-49cf-a9dd-b7dcee258112.png" alt="image"></a></p>
+<p>在左侧的代码编辑器中，删除现有的所有代码，然后复制粘贴以下内容到代码编辑器：</p>
+<blockquote>
+<p>简化后的代码来自 <a target="_blank" rel="noopener" href="https://github.com/x-dr/chatgptProxyAPI">https://github.com/x-dr/chatgptProxyAPI</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> TELEGRAPH_URL = <span class="string">&#x27;https://api.openai.com&#x27;</span>;</span><br><span class="line"></span><br><span class="line">addEventListener(<span class="string">&#x27;fetch&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  event.respondWith(handleRequest(event.request))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">handleRequest</span>(<span class="params">request</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="keyword">new</span> URL(request.url);</span><br><span class="line">  url.host = TELEGRAPH_URL.replace(<span class="regexp">/^https?:\/\//</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> modifiedRequest = <span class="keyword">new</span> Request(url.toString(), &#123;</span><br><span class="line">    headers: request.headers,</span><br><span class="line">    method: request.method,</span><br><span class="line">    body: request.body,</span><br><span class="line">    redirect: <span class="string">&#x27;follow&#x27;</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> fetch(modifiedRequest);</span><br><span class="line">  <span class="keyword">const</span> modifiedResponse = <span class="keyword">new</span> Response(response.body, response);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 添加允许跨域访问的响应头</span></span><br><span class="line">  modifiedResponse.headers.set(<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="string">&#x27;*&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> modifiedResponse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后点击编辑器右下角的 “Save and deploy” 按钮部署该代码，在弹出的对话框中继续选择 “Save and deploy” 确认部署。</p>
+<p><a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/38027416/222872146-bf4c8f30-307a-4511-9be6-8c19db5cab43.png"><img src="https://user-images.githubusercontent.com/38027416/222872146-bf4c8f30-307a-4511-9be6-8c19db5cab43.png" alt="image"></a></p>
+<p>至此，便可以使用该 worker 的地址来代替 OpenAI 的 API 地址了。比如想要请求 ChatGPT 的 API 时，把官方文档中的 <code>https://api.openai.com/v1/chat/completions</code> 替换成 <code>https://openai.workers.dev</code> 即可（注意这个地址并不存在，是需要换成自己刚刚创建的 Worker 的地址）。</p>
+<p>但是你可能会发现，这样做了依然还是没有解决问题，因为 Cloudflare Workers 的 <code>workers.dev</code> 域名也是被 GFW 认证过的🥲。但是好在只是认证了 <code>workers.dev</code> 域名，而 ip 还是幸存的状态，所以我们可以给 Worker 绑定一个自己的域名。</p>
+<h3 id="4-绑定自己的域名"><a href="#4-绑定自己的域名" class="headerlink" title="4.绑定自己的域名"></a>4.绑定自己的域名</h3><p>在 Cloudflare Workers 的管理界面中，点击 “Triggers” 选项卡，然后点击 “Custom Domians” 中的 “Add Custom Domain” 按钮以绑定域名。</p>
+<p><a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/38027416/222872491-026600f5-c04c-49c5-9fdf-4d4abb0b66f7.png"><img src="https://user-images.githubusercontent.com/38027416/222872491-026600f5-c04c-49c5-9fdf-4d4abb0b66f7.png" alt="image"></a></p>
+<p>输入域名后点击 “Add Custom Domain”，<del>根据提示修改域名的 DNS 记录。因为我的域名是托管在 Cloudflare 上的，所以无需手动更改 DNS 记录，如果域名没有托管在 Cloudfalre 上，可以根据相关提示自行配置。</del> ⚠️ 据评论区提示，目前只支持 NS 托管在 Cloudflare 上的域名，如果不介意，可以点击 Cloudflare 侧边栏的 “Websites”，然后点击 “Add a Site” 按钮，根据提示将域名的 NS 记录指定到 Cloudflare。</p>
+<p><a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/38027416/222872581-b99c8870-bcc7-4b8d-ba1e-1ad7830ce776.png"><img src="https://user-images.githubusercontent.com/38027416/222872581-b99c8870-bcc7-4b8d-ba1e-1ad7830ce776.png" alt="image"></a></p>
+<p>至此便大功告成。等待片刻，应该就可以通过你自己的域名来代替 OpenAI 的 API 地址了，比如在本文的例子中，想要请求 ChatGPT 的 API ，即是把官方 API 地址 <code>https://api.openai.com/v1/chat/completions</code> 换为我自己的域名 <code>https://openai.nooc.ink/v1/chat/completions</code> ，其他参数均参照官方示例即可。由于 Cloudflare 有每天免费 10 万次的请求额度，所以轻度使用基本是零成本的。⚠️ 注意请不要使用我这里的 <code>openai.nooc.ink</code>，因为随时可能会被我关闭🤪。</p>
+<p><a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/38027416/222873100-8979dd0e-9572-4d6b-92d6-86d012bdd188.png"><img src="https://user-images.githubusercontent.com/38027416/222873100-8979dd0e-9572-4d6b-92d6-86d012bdd188.png" alt="image"></a></p>
+<h3 id="扩展-推荐相应的应用"><a href="#扩展-推荐相应的应用" class="headerlink" title="扩展:推荐相应的应用"></a>扩展:推荐相应的应用</h3><img src="https://s2.loli.net/2023/03/15/hKYVSzRX1B9iPD7.jpg" style="zoom:50%;" />
+
+<p>如在上图应用的API Server中点击加号既可添加你自己的域名来代替 OpenAI 的 API 地址了（忽视上图下面红色的字）</p>
+<p>注意：在下面这些应用（捷径除外）中只用复制你的绑定成功的域名即可，不需要加后面的 <strong>/v1/chat/completions</strong></p>
+<p>捷径api地址只需要修改成你的绑定的域名，如这样：<em>https://你绑定的域名/v1/chat/completions</em></p>
+<p>PC端：谷歌浏览器插件和应用:</p>
+<pre><code>- 应用：[chatBox] （https://github.com/Bin-Huang/chatbox/releases）
+
+- 插件：[chatHub]（https://github.com/wong2/chathub/）</code></pre>
+<p>移动端：ios搜索“AMA”(适用于安卓应用和ios应用)见另一篇有下载地址</p>
+<p>还有ios捷径:</p>
+<pre><code>- AI小助手：[AI小助手]（https://www.icloud.com/shortcuts/620e11d10bc4419497c0fd323e3fe8f1）</code></pre>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/search">搜索</a></li>
+         
+          <li><a href="/archives">归类</a></li>
+         
+          <li><a href="/about">关于我</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%99%BB%E5%BD%95%E5%88%B0-Cloudflare"><span class="toc-number">1.</span> <span class="toc-text">1.登录到 Cloudflare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-Cloudflare-Worker"><span class="toc-number">2.</span> <span class="toc-text">2.创建一个 Cloudflare Worker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9CloudflareWorker%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">3.修改CloudflareWorker的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%BB%91%E5%AE%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D"><span class="toc-number">4.</span> <span class="toc-text">4.绑定自己的域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95-%E6%8E%A8%E8%8D%90%E7%9B%B8%E5%BA%94%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">扩展:推荐相应的应用</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&text=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&is_video=false&description=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用 Cloudflare解决 ChatGPT API无法访问的问题&body=Check out this article: http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&title=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&name=使用 Cloudflare解决 ChatGPT API无法访问的问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/[object%20Object]/2023/04/02/%E4%BD%BF%E7%94%A8-Cloudflare%E8%A7%A3%E5%86%B3-ChatGPT-%E7%9A%84-API-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98/&t=使用 Cloudflare解决 ChatGPT API无法访问的问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2023
+    <strong>♥ </strong>
+    luckyu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/search">搜索</a></li><!--
+     --><!--
+       --><li><a href="/archives">归类</a></li><!--
+     --><!--
+       --><li><a href="/about">关于我</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
